@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+input{
+    color: black !important;
+    border-radius: 5px;
+    padding: 5px;
+}
+input:focus-visible, select:focus-visible {
+    outline: none;
+}
+
+label, strong{
+    color: rgb(229 231 235);
+}
+
+select{
+    border-radius: 5px;
+}
