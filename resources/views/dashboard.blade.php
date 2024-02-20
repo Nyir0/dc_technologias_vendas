@@ -60,7 +60,7 @@
                                         <option value="11">11x</option>
                                         <option value="12">12x</option>
                                 </select>
-                                <strong class="text-3xl pl-4">R$ 0,00 cada Parcela</strong>
+                                <strong id="valueParcel" class="text-3xl pl-4">R$ 0,00 cada Parcela</strong>
                             </div>
                             <x-primary-button class="w-40 justify-center">Comprar !</x-primary-button>
                         </div>
