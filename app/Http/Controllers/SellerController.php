@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Sell;
+use Symfony\Component\DomCrawler\Crawler;
 
 class SellerController extends Controller
 {
@@ -21,6 +23,49 @@ class SellerController extends Controller
 
         return $list;
 
+    }
+
+    function Sell(Request $request){
+
+        //Criando a instacia para pegar uma string com HTML
+        $crawler = new Crawler($request->listProducts);
+        // Convertendo a string com HTML para sem tags HTML
+        $text = $crawler->filterXPath('//text()');
+
+        $list_products = "";
+        foreach ($text as $index){
+            $list_products = $list_products . $index->nodeValue;
+        }
+
+        // Filtra e faz a limpeza do texto de lista de produtos
+        $stringLimpa = preg_replace('/\s+/', ' ', $list_products);
+        $palavrasSeparadas = preg_replace('/\s+/', ', ', trim($stringLimpa));
+        $JSON_list_products = $palavrasSeparadas;
+
+        // Valor total da venda
+        $total = floatVal(str_replace(',','.',$request->total[0]));
+
+        // Tipo de pagamento
+        $type_payments = $request->payments;
+
+        // Número de Parcelas
+        $installments = $request->parcel;
+
+        $BD_Sells = new Sell;
+        $BD_Sells->products     =   $JSON_list_products;
+        $BD_Sells->total_value  =   $total;
+        $BD_Sells->type_payment =   $type_payments;
+        $BD_Sells->installments =   $installments;
+        $BD_Sells->save();
+
+        return "success";
+    }
+
+    // Função que direciona para a pagina de historico e mostra todas as compras feitas
+    function history(){
+        $history = Sell::all();
+
+        return view("history", ["history" => $history]);
     }
 
     // Função para pegar os valores e formatar, do formulario de produtos que serão vendidos, e retorna um array
@@ -45,5 +90,14 @@ class SellerController extends Controller
         }
 
         return $list;
+    }
+
+    function SellClose(Request $request){
+        $sell_id = str_replace("seller", '', $request->sell_id);
+        Sell::where("id", "=", $sell_id)->delete();
+    }
+
+    function editHistory(Request $request){
+        
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SellerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,5 +24,13 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::middleware('auth')->post('/sell', [SellerController::class, 'Sell']);
+
+Route::middleware('auth')->get('/history', [SellerController::class, 'history'])->name('history');
+
+Route::middleware('auth')->post('/sell-close', [SellerController::class, 'SellClose']);
+
+Route::middleware('auth')->post('/edit-history/{id}', [SellerController::class, 'editHistory']);
 
 require __DIR__.'/auth.php';

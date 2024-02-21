@@ -7,8 +7,9 @@ export default defineConfig({
             input: [
                 'resources/css/app.css',
                 'resources/js/app.js',
-                'resource/js/addition.js',
-                'resource/js/formSubmite.js'
+                'resources/js/addition.js',
+                'resources/js/formSubmite.js',
+                'resources/js/history.js',
             ],
             refresh: true,
         }),

@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->json('products');
             $table->float('total_value');
+            $table->text('type_payment');
             $table->integer('installments');
             $table->timestamps();
         });

@@ -16,7 +16,8 @@
             'resources/css/app.css', 
             'resources/js/app.js',
             'resources/js/addition.js',
-            'resources/js/formSubmite.js'
+            'resources/js/formSubmite.js',
+            'resources/js/history.js',
             ])
     </head>
     <body class="font-sans antialiased">

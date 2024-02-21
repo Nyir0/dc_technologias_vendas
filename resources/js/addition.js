@@ -19,7 +19,7 @@ $(window).on('load', () => {
                 </div>
                 <div class="flex flex-col w-1/5">
                     <label>Quantidade</label>
-                    <input class="uppercase" type="number" id="amount_${contador}" name="amount_${contador}" placeholder="Digite a Quantidade">
+                    <input class="uppercase" type="number" id="amount_${contador}" name="amount_${contador}" placeholder="Digite a Quantidade" required>
                 </div>
             </section>
             `

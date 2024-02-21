@@ -12,6 +12,17 @@ $(window).on("load", () => {
             datatype: "json",
             success: (data)=>{
                 $("#totalSell").text("Total: R$ " + data.total);
+                $("#valueParcel").text("");
+                $("#listProducts").empty()
+                var array = Object.values(data);
+
+                array.forEach(element => {
+                    if(element.product){
+                        $("#listProducts").append(`
+                            <span>x${element.amount}_${element.product.replace(/ /g, '_')}</span>
+                        `)
+                    }
+                });
             },
             error: () => {
                 console.log("Algo deu errado");
@@ -19,6 +30,26 @@ $(window).on("load", () => {
         })
 
         $("#paymentSection").css("opacity", "1");
+    })
+
+    // Esta parte irá ser executada quando o cliente confirmar a compra e irá inserir no banco de dados
+    $("#formFinish").on("submit", (e) => {
+        e.preventDefault();
+
+        $.ajax({
+            type: "POST",
+            url: "/sell",
+            data:{
+                "_token"        : $("input[name='_token']").val(),
+                "total"         : $("#totalSell").text().match(/\d+\,\d+(\.\d+)?/),
+                "payments"      : $("#paymentOption").val(),
+                "parcel"        : $("#parcel").val(),
+                "listProducts"  : $("#listProducts").html()
+            },
+            dataType: "json"
+        })
+
+        window.location.href = "/history";
     })
 
     $("#parcel").on("change", (e) => {
@@ -35,9 +66,4 @@ $(window).on("load", () => {
             $("#valueParcel").text("Número de parcelas deve ser maior que zero");
         }
     });
-
-    // Esta parte irá ser executada quando o cliente confirmar a compra e irá inserir no banco de dados
-    $("#formFinsh").on("submit", (e) => {
-        e.preventDefault(e);
-    })
 })

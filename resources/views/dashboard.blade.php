@@ -1,10 +1,9 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
+            {{ __('Loja') }}
         </h2>
     </x-slot>
-
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div>
@@ -22,15 +21,16 @@
                             </div>
                             <div class="flex flex-col w-1/5">
                                 <label for="product">Quantidade</label>
-                                <input class="uppercase" type="number" id="amount_1" name="amount_1" placeholder="Digite a Quantidade">
+                                <input class="uppercase" type="number" id="amount_1" name="amount_1" placeholder="Digite a Quantidade" required>
                             </div>
                         </section>
                         <img class="cursor-pointer opacity-70 hover:opacity-100" id="addition" src="./icons/addition.svg" alt="" width="50" height="50">
                         <x-primary-button class="absolute right-0 bottom-0">Avançar</x-primary-button>
                     </form>
                 </section>
-                <section id="paymentSection" class="border-t-2 border-[dark:bg-gray-800] py-6 opacity-0 w-full transition-all duration-500 ease-linear">
-                    <form id="formFinish">
+                <section id="paymentSection" class="flex border-t-2 border-[dark:bg-gray-800] py-6 opacity-0 w-full transition-all duration-500 ease-linear">
+                    <form id="formFinish" class="w-1/2">
+                        @csrf
                         <h3 id="totalSell" class="font-semibold text-5xl text-gray-800 dark:text-gray-200 leading-tight">
                             Total: R$ 0,00
                         </h3>
@@ -65,6 +65,8 @@
                             <x-primary-button class="w-40 justify-center">Comprar !</x-primary-button>
                         </div>
                     </form>
+                    <section id="listProducts" class="flex flex-col w-1/2 text-white">
+                    </section>
                 </section>
             </div>
         </div>
