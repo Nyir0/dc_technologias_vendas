@@ -49,7 +49,7 @@
                         <div class="flex flex-col">
                             <label for="parcel">Parcelas:</label>
                             <div class="flex items-center my-4">
-                                <select class="w-1/7 p-2 my-2" id="parcel" name="parcel">
+                                <select class="w-1/7 p-2 my-2" id="parcel" name="parcel" disabled>
                                     <option value="1">A vista</option>
                                         <option value="2">2x</option>
                                         <option value="3">3x</option>

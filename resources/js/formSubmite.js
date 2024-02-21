@@ -52,6 +52,16 @@ $(window).on("load", () => {
         window.location.href = "/history";
     })
 
+    $("#paymentOption").on("change", () => {
+        if($("#paymentOption").val() === "cred"){
+            $("#parcel").prop("disabled", false);
+        }else{
+            $("#parcel").val("1");
+            $("#parcel").prop("disabled", true);
+            $("#valueParcel").empty();
+        }
+    })
+
     $("#parcel").on("change", (e) => {
     
         var valor = $("#totalSell").text(); 
@@ -62,8 +72,6 @@ $(window).on("load", () => {
         if (parcel !== 0) {
             var valueParcel = parseFloat(valorFloat.replace(",", ".")) / parcel;
             $("#valueParcel").text("R$ " + valueParcel.toFixed(2) + " cada Parcela");
-        } else {
-            $("#valueParcel").text("Número de parcelas deve ser maior que zero");
         }
     });
 })
