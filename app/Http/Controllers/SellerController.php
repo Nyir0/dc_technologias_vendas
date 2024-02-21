@@ -98,6 +98,20 @@ class SellerController extends Controller
     }
 
     function editHistory(Request $request){
-        
+        $sell = Sell::where("id", "=", $request->id)->first();
+
+        return view("edit_history", ["sell" => $sell]);
+    }
+
+    function edit(Request $request){
+        Sell::where("id", "=", $request->id)
+        ->update([
+            'products' => $request->products,
+            'total_value' => floatVal(str_replace(',', '.',$request->totalShell)),
+            'installments' => $request->parcel,
+            'type_payment' => $request->paymentOption
+        ]);
+
+        return redirect()->route('history');
     }
 }

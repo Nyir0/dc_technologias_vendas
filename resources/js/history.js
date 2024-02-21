@@ -1,6 +1,7 @@
 import $ from 'jquery';
 
 $(window).on('load', () => {
+    
     $("img[name='close-history']").on("click", function() {
         var sell_id = $(this).attr('value');
         $.ajax({
@@ -14,4 +15,9 @@ $(window).on('load', () => {
         })
         window.location.reload();
     });
+
+    $("#editHistory").on("click", () => {
+        console.log("editar");
+    })
+
 })

@@ -27,10 +27,12 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware('auth')->post('/sell', [SellerController::class, 'Sell']);
 
+Route::middleware('auth')->post('/edit', [SellerController::class, 'Edit']);
+
 Route::middleware('auth')->get('/history', [SellerController::class, 'history'])->name('history');
 
 Route::middleware('auth')->post('/sell-close', [SellerController::class, 'SellClose']);
 
-Route::middleware('auth')->post('/edit-history/{id}', [SellerController::class, 'editHistory']);
+Route::middleware('auth')->get('/edit-history/{id}', [SellerController::class, 'editHistory']);
 
 require __DIR__.'/auth.php';
