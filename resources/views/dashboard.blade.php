@@ -24,7 +24,10 @@
                                 <input class="uppercase" type="number" id="amount_1" name="amount_1" placeholder="Digite a Quantidade" required>
                             </div>
                         </section>
-                        <img class="cursor-pointer opacity-70 hover:opacity-100" id="addition" src="./icons/addition.svg" alt="" width="50" height="50">
+                        <div id="add_minus" class="flex">
+                            <img class="cursor-pointer opacity-70 hover:opacity-100" id="addition" src="./icons/addition.svg" alt="" width="50" height="50">
+                            <img class="cursor-pointer opacity-70 hover:opacity-100" id="minus" src="./icons/minus.svg" alt="" width="50" height="50">
+                        </div>
                         <x-primary-button class="absolute right-0 bottom-0">Avançar</x-primary-button>
                     </form>
                 </section>

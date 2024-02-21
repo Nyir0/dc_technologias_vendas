@@ -6,7 +6,7 @@ $(window).on('load', () => {
     
     $("#addition").on("click", function() {
         
-        $("#addition").before(
+        $("#add_minus").before(
             `
             <section class="flex w-full p-8 mb-3 bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="flex flex-col w-2/5">
@@ -26,4 +26,16 @@ $(window).on('load', () => {
         )
         contador++;
     })
+
+    $("#minus").on("click", function() {
+        // Seleciona todos os sections dentro do formulário
+        var sections = $("#formSell section");
+    
+        console.log(sections.length);
+        // Verifica se há pelo menos um section antes de remover
+        if (sections.length > 1) {
+            // Seleciona o último section e o remove
+            sections.eq(sections.length - 1).remove();
+        }
+    });
 })
