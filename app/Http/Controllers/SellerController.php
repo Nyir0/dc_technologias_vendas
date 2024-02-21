@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Sell;
 use Symfony\Component\DomCrawler\Crawler;
+use Illuminate\Support\Facades\Auth;
 
 class SellerController extends Controller
 {
@@ -52,18 +53,18 @@ class SellerController extends Controller
         $installments = $request->parcel;
 
         $BD_Sells = new Sell;
+        $BD_Sells->id_user      =   Auth::id(); 
         $BD_Sells->products     =   $JSON_list_products;
         $BD_Sells->total_value  =   $total;
         $BD_Sells->type_payment =   $type_payments;
         $BD_Sells->installments =   $installments;
         $BD_Sells->save();
-
         return "success";
     }
 
     // Função que direciona para a pagina de historico e mostra todas as compras feitas
     function history(){
-        $history = Sell::all();
+        $history = Sell::where("id_user","=", Auth::id())->get();
 
         return view("history", ["history" => $history]);
     }

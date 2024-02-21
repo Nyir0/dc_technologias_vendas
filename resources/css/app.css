@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 input{
+    background-color: white !important;
     color: black !important;
     border-radius: 5px;
     padding: 5px;
